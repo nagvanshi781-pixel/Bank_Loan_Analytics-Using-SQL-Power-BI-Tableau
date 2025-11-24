@@ -62,8 +62,8 @@ Dashboard highlights
 Recommendations
 ## 📊 Dashboard Preview
 ### sample dashboard
-![Customer Beavior Dashboard](screenshots/Screenshot%202025-11-21%20163750.png)
-![Customer Beavior Dashboard](screenshots/customer%20behavior%202025-11-24.png)
+![Customer Behavior Dashboard](screenshots/Screenshot%202025-11-21%20163750.png)
+![Customer Behavior Dashboard](screenshots/customer%20behavior%202025-11-24.png)
 ## 🎯 Results & Key Insights
 
 * Identified top customer segments
