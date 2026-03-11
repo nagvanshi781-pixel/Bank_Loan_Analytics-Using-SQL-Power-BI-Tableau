@@ -165,7 +165,7 @@ The Power BI dashboard visualizes:
 
 An additional **Excel dashboard** was created to explore loan trends and metrics.
 
-![Excel Dashboard](screenshots/Excel Dashboard.png)
+![Excel Dashboard](screenshots/Excel_Dashboard.png)
 
 ---
 
