@@ -1,104 +1,223 @@
-# Customer_behavior_Analysis
-This project analyzes customer shopping behavior using an end-to-end data analytics workflow. It covers data loading, exploratory data analysis (EDA), data cleaning, SQL queries, database management, dashboard creation in Power BI, and a final presentation built with Gamma. The goal is to uncover actionable insights about purchase patterns and customer segments.
-📂 Dataset
-Format: Excel / CSV
-Contains customer attributes, transactions, and purchase behavior
-Loaded and explored using Python (Jupyter Notebook)
-Cleaned, transformed, and stored in a relational database
-🛠 Tools & Technologies
-| Category        | Tools Used                                 |
-| --------------- | ------------------------------------------ |
-| Programming     | Python (Pandas, NumPy, Matplotlib/Seaborn) |
-| Database        | PostgreSQL / MySQL / SQL Server            |
-| Visualization   | Power BI                                   |
-| Documentation   | Jupyter Notebook                           |
-| Presentation    | Gamma (AI Presentation Builder)            |
-| Version Control | Git & GitHub                               |
+# 📊 Bank Loan Data Analysis & Dashboard Project (SQL + Power BI)
 
-📁 Project Steps
+## 📌 Project Overview
+This project is an **end-to-end loan data analysis** using **SQL for data exploration and business logic** and **Power BI for visualization and insights**.
 
-1️⃣ Data Loading (Python)
-Imported dataset into Jupyter Notebook
-Verified schema, data types, and missing values
-Saved cleaned output for database ingestion
+The goal is to:
+- Analyze loan trends, risk indicators, and repayment behavior
+- Identify patterns across time, geography, and borrower profiles
+- Present insights through an interactive dashboard
 
-2️⃣ Exploratory Data Analysis (EDA)
-Summary statistics
-Distribution plots, correlations
-Customer segmentation patterns
-Outlier detection and handling
-
-3️⃣ Data Cleaning & Transformation
-Handled missing or inconsistent values
-Removed duplicates
-Feature engineering (optional)
-Exported cleaned data for SQL database
-
-4️⃣ SQL Database Setup (PostgreSQL / MySQL / SQL Server)
-Created database and tables
-Loaded cleaned dataset into the database
-Wrote analytical SQL queries:
-Customer segmentation
-Purchase trends
-Revenue insights
-High-value vs low-value customers
-
-5️⃣ Power BI Dashboard
-Connected to SQL database
-Built interactive visualizations:
-Revenue trends
-Demographic insights
-Product-wise performance
-Customer behavior metrics
-Applied filters, drill-downs, and slicers
-
-6️⃣ Final Report & Presentation
-Summarized findings in a business-focused report
-Created a Gamma AI presentation covering:
-Problem
-Approach
-Insights
-Dashboard highlights
-Recommendations
-## 📊 Dashboard Preview
-### sample dashboard
-![Customer Behavior Dashboard](screenshots/Dashboard_Image.png)
-## 🎯 Results & Key Insights
-
-* Identified top customer segments
-* Found drivers of repeat purchases
-* Highlighted revenue patterns and seasonal trends
-* Built a functional BI dashboard for decision-makers
-
-(You can update this with real insights later.)
+This project is suitable for **Data Analyst / Business Analyst / SQL roles**.
 
 ---
 
-## 🚀 How to Run This Project
+## 🗂️ Dataset Description
 
-### *Prerequisites*
+The analysis is based on two relational tables:
 
-* Python 3.8+
-* PostgreSQL/MySQL/SQL Server installed
-* Power BI Desktop
-* Git installed
+### 1️⃣ finance1 (Loan & Borrower Details)
+Contains loan application–level information:
 
-### *Steps to Run*
+- `id` (Primary Key)
+- `loan_amnt`
+- `issue_d`
+- `grade`
+- `sub_grade`
+- `loan_status`
+- `verification_status`
+- `home_ownership`
+- `addr_state`
 
-1. Clone the repository:
+---
 
-   bash
-   git clone https://github.com/nagvanshi781-pixel/Customer_behavior.git
-   cd Customer_behavior
-   
-2. Install Python requirements:
+### 2️⃣ finance2 (Payment & Credit Behavior)
 
-   bash
-   pip install -r requirements.txt
-   
-3. Open Jupyter Notebook and run EDA/cleaning scripts
-4. Import cleaned data into your SQL database
-5. Run provided SQL queries
-6. Open the Power BI file (.pbix) and refresh the connection
-7. View the dashboard and presentation
+Contains repayment and revolving credit information:
 
+- `id` (Foreign Key)
+- `total_pymnt`
+- `revol_bal`
+- `last_pymnt_d`
+
+Both tables are joined using **loan id**.
+
+---
+
+# 🔍 SQL Analysis
+
+### 1️⃣ Year-wise Loan Statistics
+
+**Metrics:**
+
+- Total loans issued  
+- Total loan amount  
+- Average loan amount  
+
+**Purpose:**  
+Identify growth trends and lending behavior over time.
+
+---
+
+### 2️⃣ Grade & Sub-grade wise Revolving Balance
+
+**Logic:**  
+Join `finance1` and `finance2` tables and aggregate revolving balance.
+
+**Insight:**  
+Higher revolving balances in lower grades may indicate elevated credit risk.
+
+---
+
+### 3️⃣ Verified vs Non-Verified Borrowers – Total Payments
+
+**Output:**  
+Total payment displayed in **millions (M)** for better readability.
+
+**Insight:**  
+Shows whether borrower verification correlates with repayment performance.
+
+---
+
+### 4️⃣ State-wise & Month-wise Loan Status
+
+**Dimensions analyzed:**
+
+- State
+- Issue month
+- Loan status
+
+**Use Case:**  
+Helps identify geographic and seasonal patterns in loan outcomes.
+
+---
+
+### 5️⃣ Home Ownership vs Repayment Activity
+
+**Metric:**  
+Count of last payment dates grouped by home ownership type.
+
+**Insight:**  
+Evaluates whether asset ownership impacts repayment consistency.
+
+---
+
+# 📊 Advanced SQL Queries
+
+The project also includes advanced SQL queries such as:
+
+- Grade-wise loan count using `HAVING`
+- Verification status distribution
+- Fully Paid vs Charged Off loan comparison
+- Loans issued in specific years
+- Loan amount analysis using `IN`
+- Loans above overall average using **subqueries**
+- Grade-wise average loan using **CTE**
+- Charged-off loans with above-average revolving balance
+- Customer ranking within grades using **DENSE_RANK()**
+
+---
+
+# 🛠️ SQL Concepts Used
+
+- Aggregations (`SUM`, `AVG`, `COUNT`)
+- Joins
+- Subqueries
+- Common Table Expressions (CTEs)
+- Window Functions
+- Grouping & filtering
+- Date-based analysis
+
+---
+
+# 📈 Power BI Dashboard
+
+### 📊 Dashboard File
+- **File:** `Bank_Loan_Analytics.pbix`
+
+### Dashboard Features
+
+The Power BI dashboard visualizes:
+
+- Total loan amount issued
+- Total number of customers
+- Revolving balance by loan grade
+- Verified vs non-verified borrower payments
+- Home ownership vs repayment activity
+- Year-wise loan amount trends
+- State and month-wise loan status
+
+### Purpose of Dashboard
+
+- Convert SQL insights into **visual and interactive reports**
+- Enable **quick comparison and trend analysis**
+- Support business stakeholders with **data-driven insights**
+
+---
+
+# 📊 Dashboard Preview
+
+![Dashboard](screenshots/Dashboard_Image.png)
+
+---
+
+# 📊 Excel Dashboard
+
+An additional **Excel dashboard** was created to explore loan trends and metrics.
+
+![Excel Dashboard](screenshots/Excel Dashboard.png)
+
+---
+
+# 🔄 SQL → Power BI Workflow
+
+1️⃣ Load raw loan data into SQL database  
+2️⃣ Perform joins, aggregations, and analysis using SQL queries  
+3️⃣ Validate results and extract insights  
+4️⃣ Import processed data into Power BI  
+5️⃣ Build interactive dashboards for visualization  
+
+---
+
+# 📂 Project Files
+
+| File | Description |
+|-----|-------------|
+| Bank_Loan_Analytics.pbix | Power BI dashboard |
+| Bank_Loan_Analytics.sql | SQL queries used in analysis |
+| Bank_Loan_Dashboard.xlsx | Excel dashboard |
+| screenshots | Dashboard images |
+| README.md | Project documentation |
+
+---
+
+# 🎯 Skills Demonstrated
+
+- SQL Data Analysis
+- Financial Risk Analysis
+- Data Visualization
+- Power BI Dashboard Development
+- Business Intelligence Reporting
+- End-to-end analytics workflow
+
+---
+
+# ✅ Conclusion
+
+This project demonstrates a **complete analytics pipeline**:
+
+Raw Data → SQL Analysis → Data Visualization → Business Insights
+
+It reflects real-world **data analyst workflows** and can be used for:
+
+- Portfolio projects
+- Interviews
+- Case study discussions
+
+---
+
+# 👨‍💻 Author
+
+**Prince Soni**
+
+Aspiring **Data Analyst | SQL | Python | Power BI | Tableau**
